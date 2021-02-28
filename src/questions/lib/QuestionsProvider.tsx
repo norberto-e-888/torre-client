@@ -19,7 +19,7 @@ export const QuestionsProvider: React.FC = ({ children }) => {
 	};
 
 	const updateDraftMutation = useMutation((dto: any) =>
-		axios.patch(`/personality-test-question/${dto.id}`, dto.updates)
+		axios.patch(`/personality-test-question/${dto.id}/update`, dto.updates)
 	);
 
 	const updateDraft = async (dto: any) => {

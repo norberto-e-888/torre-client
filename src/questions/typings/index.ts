@@ -13,3 +13,21 @@ export enum PersonalityDichotomy {
 	Decisions = 'decisions',
 	Lifestyle = 'lifestyle',
 }
+
+export type PersonalityDichotomyPreferencesMap = {
+	[Key: string]: PersonalityPreference;
+	[PersonalityDichotomy.Energy]: 'e' | 'i';
+	[PersonalityDichotomy.Information]: 's' | 'n';
+	[PersonalityDichotomy.Decisions]: 't' | 'f';
+	[PersonalityDichotomy.Lifestyle]: 'j' | 'p';
+};
+
+export type PersonalityPreference =
+	| 'e'
+	| 'i'
+	| 's'
+	| 'n'
+	| 't'
+	| 'f'
+	| 'j'
+	| 'p';

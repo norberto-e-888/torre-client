@@ -24,8 +24,7 @@ const QuestionCollaborationPage: React.FC = () => {
 				history.replace('/questions');
 				return null;
 			}
-		},
-		{ refetchOnWindowFocus: false }
+		}
 	);
 
 	return (
@@ -40,7 +39,11 @@ const QuestionCollaborationPage: React.FC = () => {
 							<Spinner />
 						)}
 					</Heading>
-					<QuestionForm question={data} />
+					{data.isDraft ? (
+						<QuestionForm question={data} />
+					) : (
+						<p>Display {data.prompt}</p>
+					)}
 				</>
 			)}
 		</Page>
