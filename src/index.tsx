@@ -9,6 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import { AuthProvider } from './auth/lib/AuthProvider';
 import App from './app/App';
 import './global.css';
+import { QuestionsProvider } from './questions/lib/QuestionsProvider';
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = 'http://localhost:3001';
@@ -21,9 +22,11 @@ ReactDOM.render(
 		<Router>
 			<QueryClientProvider client={queryClient}>
 				<AuthProvider>
-					<ChakraProvider theme={theme}>
-						<App />
-					</ChakraProvider>
+					<QuestionsProvider>
+						<ChakraProvider theme={theme}>
+							<App />
+						</ChakraProvider>
+					</QuestionsProvider>
 				</AuthProvider>
 			</QueryClientProvider>
 		</Router>

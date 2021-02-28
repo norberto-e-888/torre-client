@@ -10,7 +10,7 @@ const EnduserApp: React.FC = () => (
 		<Route path="/tests/new" exact>
 			New test
 		</Route>
-		<Route path="/tests/:id/take" exact>
+		<Route path="/tests/:testId/take" exact>
 			Take test
 		</Route>
 		<Route>
