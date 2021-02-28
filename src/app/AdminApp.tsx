@@ -4,7 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Page from '../lib/components/Page';
 import TestsListPage from '../personality-test/pages/TestsListPage';
 import { useQuestions } from '../questions/lib/QuestionsProvider';
-import QuestionCollaborationPage from '../questions/pages/QuestionCollaborationPage';
+import QuestionDetailPage from '../questions/pages/QuestionDetailPage';
 
 const AdminApp: React.FC = () => {
 	const questionsState = useQuestions();
@@ -28,8 +28,8 @@ const AdminApp: React.FC = () => {
 			<Route path="/questions" exact>
 				<Page>Questions List</Page>
 			</Route>
-			<Route path="/questions/collaboration/:questionId" exact>
-				<QuestionCollaborationPage />
+			<Route path="/questions/:questionId" exact>
+				<QuestionDetailPage />
 			</Route>
 			<Redirect to="/tests" />
 		</Switch>

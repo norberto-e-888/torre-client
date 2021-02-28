@@ -7,7 +7,7 @@ import QuestionForm from '../components/QuestionForm';
 import { Heading, Spinner } from '@chakra-ui/react';
 import { useQuestions } from '../lib/QuestionsProvider';
 
-const QuestionCollaborationPage: React.FC = () => {
+const QuestionDetailPage: React.FC = () => {
 	const history = useHistory();
 	const questions = useQuestions();
 	const params = useParams() as any;
@@ -50,4 +50,4 @@ const QuestionCollaborationPage: React.FC = () => {
 	);
 };
 
-export default QuestionCollaborationPage;
+export default QuestionDetailPage;

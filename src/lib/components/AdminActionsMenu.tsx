@@ -25,7 +25,7 @@ const AdminActionsMenu: React.FC = () => {
 	) => {
 		e.preventDefault();
 		const questionDraft = await questionsState.createDraft();
-		history.push(`/questions/collaboration/${questionDraft.id}`);
+		history.push(`/questions/${questionDraft.id}`);
 	};
 
 	return (
