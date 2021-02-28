@@ -3,10 +3,12 @@ import { createContext, useContext } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import axios from 'axios';
 import { AuthState } from '../typings';
+import { useHistory } from 'react-router-dom';
 
 const AuthContext = createContext<AuthState | undefined>(undefined);
 
 export const AuthProvider: React.FC = ({ children }) => {
+	const history = useHistory();
 	const queryClient = useQueryClient();
 	const userQuery = useQuery('user', async () => {
 		try {
@@ -25,7 +27,11 @@ export const AuthProvider: React.FC = ({ children }) => {
 		axios.post('/auth/sign-in', dto)
 	);
 
-	const signOutMutation = useMutation(() => axios.patch('/auth/sign-out'));
+	const signOutMutation = useMutation(async () => {
+		await axios.patch('/auth/sign-out');
+		queryClient.removeQueries('user', { exact: true });
+		history.replace('/sign-in');
+	});
 
 	const signUp = async (dto: any) => {
 		const { data } = await signUpMutation.mutateAsync(dto);
@@ -37,9 +43,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 		queryClient.setQueryData('user', data);
 	};
 
-	const signOut = async (dto: any) => {
-		queryClient.removeQueries('user');
-		await signOutMutation.mutateAsync(dto);
+	const signOut = async () => {
+		await signOutMutation.mutateAsync();
 	};
 
 	return (
@@ -61,4 +66,4 @@ export const AuthProvider: React.FC = ({ children }) => {
 	);
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => useContext(AuthContext) as AuthState;

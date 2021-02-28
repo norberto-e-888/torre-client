@@ -1,11 +1,12 @@
 import React from 'react';
-import { Center, Heading, Icon, Text } from '@chakra-ui/react';
+import { Heading, Icon, Text } from '@chakra-ui/react';
 import { LockIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 import SignUpForm from '../components/SignUpForm';
+import Page from '../../lib/components/Page';
 
 const SignUpPage: React.FC = () => (
-	<Center className="center-vertically" style={{ paddingBottom: '28px' }}>
+	<Page>
 		<Heading className="page-header">
 			New Account <Icon as={LockIcon} color="#1DA1F2" />
 		</Heading>
@@ -16,7 +17,7 @@ const SignUpPage: React.FC = () => (
 				<strong style={{ cursor: 'pointer' }}>Sign in</strong>
 			</Link>
 		</Text>
-	</Center>
+	</Page>
 );
 
 export default SignUpPage;

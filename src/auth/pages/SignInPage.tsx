@@ -1,11 +1,12 @@
-import { Center, Heading, Icon, Text } from '@chakra-ui/react';
+import { Heading, Icon, Text } from '@chakra-ui/react';
 import { UnlockIcon } from '@chakra-ui/icons';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SignInForm from '../components/SignInForm';
+import Page from '../../lib/components/Page';
 
 const SignInPage: React.FC = () => (
-	<Center className="center-vertically" style={{ paddingBottom: '28px' }}>
+	<Page>
 		<Heading className="page-header">
 			Enter <Icon as={UnlockIcon} color="#1DA1F2" />
 		</Heading>
@@ -16,7 +17,7 @@ const SignInPage: React.FC = () => (
 				<strong style={{ cursor: 'pointer' }}>Sign up</strong>
 			</Link>
 		</Text>
-	</Center>
+	</Page>
 );
 
 export default SignInPage;

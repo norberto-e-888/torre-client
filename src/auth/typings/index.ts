@@ -1,7 +1,7 @@
 export interface AuthState {
 	signUp: (dto: any) => Promise<void>;
 	signIn: (dto: any) => Promise<void>;
-	signOut: (dto: any) => Promise<void>;
+	signOut: () => Promise<void>;
 	user?: any;
 	isAuthenticated: boolean;
 	isUserLoading: boolean;

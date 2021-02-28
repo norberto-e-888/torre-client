@@ -1,10 +1,11 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import TestsListPage from '../personality-test/pages/TestsListPage';
 
 const EnduserApp: React.FC = () => (
 	<Switch>
 		<Route path="/tests" exact>
-			<p>Tests list</p>
+			<TestsListPage />
 		</Route>
 		<Route path="/tests/:id/take" exact>
 			<p>Take test</p>

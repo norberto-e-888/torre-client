@@ -1,9 +1,4 @@
-import {
-	Center,
-	ChakraProvider,
-	ColorModeScript,
-	theme,
-} from '@chakra-ui/react';
+import { ChakraProvider, ColorModeScript, theme } from '@chakra-ui/react';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -12,7 +7,6 @@ import axios from 'axios';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import { AuthProvider } from './auth/lib/AuthProvider';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
 import App from './app/App';
 import './global.css';
 
@@ -28,26 +22,7 @@ ReactDOM.render(
 			<QueryClientProvider client={queryClient}>
 				<AuthProvider>
 					<ChakraProvider theme={theme}>
-						<Center className="center-vertically">
-							<div
-								style={{
-									display: 'flex',
-									justifyContent: 'flex-end',
-									width: '100%',
-									padding: '0.5rem',
-								}}
-							>
-								<ColorModeSwitcher justifySelf="right" />
-							</div>
-							<div
-								style={{
-									width: '100%',
-									height: '100%',
-								}}
-							>
-								<App />
-							</div>
-						</Center>
+						<App />
 					</ChakraProvider>
 				</AuthProvider>
 			</QueryClientProvider>
