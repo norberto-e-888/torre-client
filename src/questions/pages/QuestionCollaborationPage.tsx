@@ -25,8 +25,9 @@ const QuestionCollaborationPage: React.FC = () => {
 		}
 	);
 
-	console.log(data.id);
-	return <Page>{isLoading ? <Spinner /> : <QuestionForm />}</Page>;
+	return (
+		<Page>{isLoading ? <Spinner /> : <QuestionForm question={data} />}</Page>
+	);
 };
 
 export default QuestionCollaborationPage;

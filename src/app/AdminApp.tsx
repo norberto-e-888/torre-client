@@ -23,10 +23,10 @@ const AdminApp: React.FC = () => {
 				<TestsListPage />
 			</Route>
 			<Route path="/tests/:testId" exact>
-				Test detail
+				<Page>Test Detail</Page>
 			</Route>
 			<Route path="/questions" exact>
-				Questions list
+				<Page>Questions List</Page>
 			</Route>
 			<Route path="/questions/collaboration/:questionId" exact>
 				<QuestionCollaborationPage />

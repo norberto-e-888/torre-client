@@ -1,7 +1,11 @@
 import React from 'react';
 
-const QuestionForm: React.FC = () => {
-	return <p>Question form</p>;
+interface Props {
+	question: any;
+}
+
+const QuestionForm: React.FC<Props> = ({ question }) => {
+	return <p>Question form {question.id}</p>;
 };
 
 export default QuestionForm;
