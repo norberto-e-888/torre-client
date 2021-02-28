@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import SignUpForm from '../components/SignUpForm';
 
 const SignUpPage: React.FC = () => (
-	<Center className="center-vertically">
+	<Center className="center-vertically" style={{ paddingBottom: '28px' }}>
 		<Heading className="page-header">
 			New Account <Icon as={LockIcon} color="#1DA1F2" />
 		</Heading>

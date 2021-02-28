@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import SignInForm from '../components/SignInForm';
 
 const SignInPage: React.FC = () => (
-	<Center className="center-vertically">
+	<Center className="center-vertically" style={{ paddingBottom: '28px' }}>
 		<Heading className="page-header">
 			Enter <Icon as={UnlockIcon} color="#1DA1F2" />
 		</Heading>
