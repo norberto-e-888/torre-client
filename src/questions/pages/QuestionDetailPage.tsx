@@ -6,6 +6,7 @@ import Page from '../../lib/components/Page';
 import QuestionForm from '../components/QuestionForm';
 import { Heading, Spinner } from '@chakra-ui/react';
 import { useQuestions } from '../lib/QuestionsProvider';
+import QuestionDisplay from '../components/QuestionDisplay';
 
 const QuestionDetailPage: React.FC = () => {
 	const history = useHistory();
@@ -33,16 +34,21 @@ const QuestionDetailPage: React.FC = () => {
 				<Spinner />
 			) : (
 				<>
-					<Heading>
-						Question Draft{' '}
-						{(questions.isUpdatingDraft || questions.isPublishingDraft) && (
-							<Spinner />
-						)}
-					</Heading>
 					{data.isDraft ? (
-						<QuestionForm question={data} />
+						<>
+							<Heading>
+								Question Draft{' '}
+								{(questions.isUpdatingDraft || questions.isPublishingDraft) && (
+									<Spinner />
+								)}
+							</Heading>
+							<QuestionForm question={data} />
+						</>
 					) : (
-						<p>Display {data.prompt}</p>
+						<>
+							<Heading>Published Question</Heading>
+							<QuestionDisplay question={data} />
+						</>
 					)}
 				</>
 			)}
