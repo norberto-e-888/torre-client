@@ -12,6 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import { useQuestions } from '../lib/QuestionsProvider';
 import { PersonalityDichotomy } from '../typings';
 
 const validationSchema = yup.object().shape({
@@ -31,17 +32,26 @@ interface Props {
 }
 
 const QuestionForm: React.FC<Props> = ({ question }) => {
-	const { register, handleSubmit, errors, formState } = useForm({
+	const questions = useQuestions();
+	const { register, handleSubmit, errors, formState, getValues } = useForm({
 		mode: 'onChange',
 		resolver: yupResolver(validationSchema),
+		defaultValues: {
+			prompt: question.prompt,
+			dichotomy: question.dichotomy,
+		},
 	});
 
-	const onSubmit = (data: any) => {
-		console.log(data);
+	const onUpdateDraft = () => {
+		questions.updateDraft({ id: question.id, updates: getValues() });
+	};
+
+	const onPublishDraft = () => {
+		questions.publishDraft(question.id);
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} noValidate>
+		<form noValidate>
 			<Stack width="20rem" spacing="1rem">
 				<FormControl
 					id="prompt"
@@ -79,10 +89,21 @@ const QuestionForm: React.FC<Props> = ({ question }) => {
 					<FormErrorMessage>{errors.dichotomy?.message}</FormErrorMessage>
 				</FormControl>
 				<Button
-					type="submit"
-					bgColor="#1DA1F2"
-					color="white"
-					disabled={!formState.isValid}
+					type="button"
+					disabled={questions.isUpdatingDraft}
+					onClick={() => {
+						// doing it like this to allow for invalid values to be sent
+						// as it is only a draft
+						onUpdateDraft();
+					}}
+				>
+					Update{' '}
+				</Button>
+				<Button
+					type="button"
+					disabled={!formState.isValid || questions.isPublishingDraft}
+					colorScheme="blue"
+					onClick={handleSubmit(onPublishDraft)}
 				>
 					Publish{' '}
 				</Button>

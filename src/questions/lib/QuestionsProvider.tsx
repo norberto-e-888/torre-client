@@ -18,11 +18,35 @@ export const QuestionsProvider: React.FC = ({ children }) => {
 		return data;
 	};
 
+	const updateDraftMutation = useMutation((dto: any) =>
+		axios.patch(`/personality-test-question/${dto.id}`, dto.updates)
+	);
+
+	const updateDraft = async (dto: any) => {
+		const { data } = await updateDraftMutation.mutateAsync(dto);
+		queryClient.setQueryData(['question', data.id], data);
+		return data;
+	};
+
+	const publishDraftMutation = useMutation((id: string) =>
+		axios.patch(`/personality-test-question/${id}/publish`)
+	);
+
+	const publishDraft = async (id: string) => {
+		const { data } = await publishDraftMutation.mutateAsync(id);
+		queryClient.setQueryData(['question', data.id], data);
+		return data;
+	};
+
 	return (
 		<QuestionsContext.Provider
 			value={{
 				createDraft,
 				isInitializingDraft: createDraftMutation.isLoading,
+				updateDraft,
+				isUpdatingDraft: updateDraftMutation.isLoading,
+				publishDraft,
+				isPublishingDraft: publishDraftMutation.isLoading,
 			}}
 		>
 			{children}

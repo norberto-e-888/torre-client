@@ -17,7 +17,6 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../lib/AuthProvider';
-import { AuthState } from '../typings';
 
 const validationSchema = yup.object().shape({
 	email: yup
@@ -34,7 +33,7 @@ const validationSchema = yup.object().shape({
 const SignUpForm: React.FC = () => {
 	const toast = useToast();
 	const history = useHistory();
-	const auth = useAuth() as AuthState;
+	const auth = useAuth();
 	const { register, handleSubmit, errors, watch, formState } = useForm({
 		mode: 'onChange',
 		resolver: yupResolver(validationSchema),

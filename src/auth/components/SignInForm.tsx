@@ -15,12 +15,11 @@ import { useForm } from 'react-hook-form';
 import { FaUser } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../lib/AuthProvider';
-import { AuthState } from '../typings';
 
 const SignInForm: React.FC = () => {
 	const toast = useToast();
 	const history = useHistory();
-	const auth = useAuth() as AuthState;
+	const auth = useAuth();
 	const { register, handleSubmit } = useForm();
 	const onSubmit = async (data: any) => {
 		try {
