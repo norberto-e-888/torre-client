@@ -9,7 +9,9 @@ const EnduserApp: React.FC = () => (
 		<Route path="/tests/:id/take" exact>
 			<p>Take test</p>
 		</Route>
-		<Redirect to="/tests" />
+		<Route>
+			<Redirect to="/tests" />
+		</Route>
 	</Switch>
 );
 

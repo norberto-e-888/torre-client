@@ -1,3 +1,4 @@
+import { Center, Spinner } from '@chakra-ui/react';
 import React from 'react';
 import { useAuth } from '../auth/lib/AuthProvider';
 import { AuthState } from '../auth/typings';
@@ -6,8 +7,16 @@ import EnduserApp from './EnduserApp';
 import UnauthenticatedApp from './UnauthenticatedApp';
 
 const App: React.FC = () => {
-	const { user } = useAuth() as AuthState;
-	const getApp = (user: any) => {
+	const { user, isUserLoading } = useAuth() as AuthState;
+	const getRootComponent = (user: any) => {
+		if (isUserLoading) {
+			return (
+				<Center className="center-vertically">
+					<Spinner />
+				</Center>
+			);
+		}
+
 		if (!user) {
 			return <UnauthenticatedApp />;
 		}
@@ -27,7 +36,7 @@ const App: React.FC = () => {
 		}
 	};
 
-	return getApp(user);
+	return getRootComponent(user);
 };
 
 export default App;
