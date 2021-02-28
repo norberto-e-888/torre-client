@@ -1,13 +1,15 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import SignInPage from '../auth/pages/SignInPage';
+import SignUpPage from '../auth/pages/SignUpPage';
 
 const UnauthenticatedApp: React.FC = () => (
 	<Switch>
 		<Route path="/sign-up" exact>
-			<p>Sign up</p>
+			<SignUpPage />
 		</Route>
 		<Route path="/sign-in" exact>
-			<p>Sign in</p>
+			<SignInPage />
 		</Route>
 		<Redirect to="/sign-in" />
 	</Switch>

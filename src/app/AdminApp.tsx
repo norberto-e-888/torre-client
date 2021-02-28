@@ -3,13 +3,13 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 const AdminApp: React.FC = () => (
 	<Switch>
-		<Route path="/test/list" exact>
+		<Route path="/tests" exact>
 			<p>Tests list</p>
 		</Route>
 		<Route path="/test/new" exact>
 			<p>New test</p>
 		</Route>
-		<Redirect to="/test/list" />
+		<Redirect to="/tests" />
 	</Switch>
 );
 
