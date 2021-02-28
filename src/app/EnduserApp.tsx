@@ -7,8 +7,11 @@ const EnduserApp: React.FC = () => (
 		<Route path="/tests" exact>
 			<TestsListPage />
 		</Route>
+		<Route path="/tests/new" exact>
+			New test
+		</Route>
 		<Route path="/tests/:id/take" exact>
-			<p>Take test</p>
+			Take test
 		</Route>
 		<Route>
 			<Redirect to="/tests" />
