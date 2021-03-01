@@ -11,7 +11,7 @@ interface Props {
 const QuestionOption: React.FC<Props> = ({
 	remove,
 	index,
-	question: { id, answer },
+	question: { id, answer, points, dichotomyPreference },
 }) => (
 	<div
 		key={id}
@@ -23,6 +23,8 @@ const QuestionOption: React.FC<Props> = ({
 		}}
 	>
 		<p>{answer}</p>
+		<p>Points: {points}</p>
+		<p>Preference: {dichotomyPreference}</p>
 		<IconButton
 			icon={<CgRemove />}
 			aria-label="remove option"

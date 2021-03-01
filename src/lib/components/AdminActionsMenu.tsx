@@ -14,10 +14,12 @@ import { HiOutlineClipboardList, HiOutlineClipboardCopy } from 'react-icons/hi';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../auth/lib/AuthProvider';
 import { useQuestions } from '../../questions/lib/QuestionsProvider';
+import { useTests } from '../../personality-test/lib/TestsProvider';
 
 const AdminActionsMenu: React.FC = () => {
 	const authState = useAuth();
 	const questionsState = useQuestions();
+	const testsState = useTests();
 	const history = useHistory();
 
 	const handleCreateQuestionDraft = async (
@@ -25,7 +27,16 @@ const AdminActionsMenu: React.FC = () => {
 	) => {
 		e.preventDefault();
 		const questionDraft = await questionsState.createDraft();
+
 		history.push(`/questions/${questionDraft.id}`);
+	};
+
+	const handleCreateTestDraft = async (
+		e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+	) => {
+		e.preventDefault();
+		const testDraft = await testsState.createDraft();
+		history.push(`/tests/${testDraft.id}`);
 	};
 
 	return (
@@ -44,7 +55,10 @@ const AdminActionsMenu: React.FC = () => {
 				>
 					Tests List
 				</MenuItem>
-				<MenuItem icon={<Icon boxSize={3.5} as={HiOutlineClipboardCopy} />}>
+				<MenuItem
+					onClick={handleCreateTestDraft}
+					icon={<Icon boxSize={3.5} as={HiOutlineClipboardCopy} />}
+				>
 					New Test
 				</MenuItem>
 				<MenuItem

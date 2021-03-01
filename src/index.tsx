@@ -10,6 +10,7 @@ import { AuthProvider } from './auth/lib/AuthProvider';
 import App from './app/App';
 import './global.css';
 import { QuestionsProvider } from './questions/lib/QuestionsProvider';
+import { TestsProvider } from './personality-test/lib/TestsProvider';
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = 'http://localhost:3001';
@@ -23,9 +24,11 @@ ReactDOM.render(
 			<QueryClientProvider client={queryClient}>
 				<AuthProvider>
 					<QuestionsProvider>
-						<ChakraProvider theme={theme}>
-							<App />
-						</ChakraProvider>
+						<TestsProvider>
+							<ChakraProvider theme={theme}>
+								<App />
+							</ChakraProvider>
+						</TestsProvider>
 					</QuestionsProvider>
 				</AuthProvider>
 			</QueryClientProvider>
