@@ -75,8 +75,6 @@ const TestForm: React.FC<Props> = ({ test, questions }) => {
 		}
 	};
 
-	console.log(test.questions.length);
-
 	return (
 		<>
 			<Stack width="30rem" spacing="1rem">
