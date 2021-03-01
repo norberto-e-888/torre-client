@@ -71,9 +71,7 @@ const TestForm: React.FC<Props> = ({ test, questions }) => {
 				setSelectedQuestions((current) => [...current, id]);
 			}
 		} else {
-			setSelectedQuestions((current) =>
-				current.filter((q: any) => q.id === id)
-			);
+			setSelectedQuestions((current) => current.filter((q: any) => q !== id));
 		}
 	};
 
@@ -106,7 +104,6 @@ const TestForm: React.FC<Props> = ({ test, questions }) => {
 						}}
 					>
 						{questions.map((q) => {
-							console.log(selectedQuestions.includes(q._id));
 							return (
 								<span
 									key={q._id}
@@ -146,7 +143,7 @@ const TestForm: React.FC<Props> = ({ test, questions }) => {
 				</Button>
 				<Button
 					type="button"
-					disabled={tests.isPublishingDraft}
+					disabled={tests.isPublishingDraft || test.questions.length < 10}
 					colorScheme="blue"
 					onClick={handleSubmit(onPublishDraft)}
 				>
