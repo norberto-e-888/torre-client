@@ -51,6 +51,7 @@ const TestDetail: React.FC<Props> = ({ test }) => {
 							<ul>
 								{(questions as any[]).map((q) => (
 									<li
+										key={q._id}
 										style={{
 											cursor: 'pointer',
 											marginLeft: '0.5rem',
