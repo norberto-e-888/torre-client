@@ -37,7 +37,7 @@ const TestForm: React.FC<Props> = ({ test, questions }) => {
 		getValues,
 		reset,
 	} = useForm({
-		mode: 'onSubmit',
+		mode: 'onChange',
 		resolver: yupResolver(validationSchema),
 		defaultValues: {
 			alias: test.alias,
@@ -74,6 +74,8 @@ const TestForm: React.FC<Props> = ({ test, questions }) => {
 			setSelectedQuestions((current) => current.filter((q: any) => q !== id));
 		}
 	};
+
+	console.log(test.questions.length);
 
 	return (
 		<>

@@ -1,4 +1,4 @@
-import { Box, Heading, Select } from '@chakra-ui/react';
+import { Box, Heading, Select, Text } from '@chakra-ui/react';
 import React from 'react';
 
 interface Props {
@@ -8,8 +8,10 @@ interface Props {
 const QuestionDisplay: React.FC<Props> = ({ question }) => {
 	return (
 		<Box>
-			<Heading>Dichotomy: {question.dichotomy}</Heading>
-			<Heading>{question.prompt}</Heading>
+			<Heading fontSize="1.5rem" fontWeight="medium">
+				Dichotomy: {question.dichotomy}
+			</Heading>
+			<Text>{question.prompt}</Text>
 			<Select style={{ marginTop: '0.5rem' }}>
 				{(question.options as any[]).map(
 					({ answer, id, points, dichotomyPreference }) => (

@@ -45,10 +45,7 @@ const QuestionDetailPage: React.FC = () => {
 							<QuestionForm question={data} />
 						</>
 					) : (
-						<>
-							<Heading>Published Question</Heading>
-							<QuestionDisplay question={data} />
-						</>
+						<QuestionDisplay question={data} />
 					)}
 				</>
 			)}

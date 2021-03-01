@@ -1,15 +1,16 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useHistory, useParams } from 'react-router-dom';
+import { Heading, Spinner } from '@chakra-ui/react';
 import axios from 'axios';
 import Page from '../../lib/components/Page';
-import { Heading, Spinner } from '@chakra-ui/react';
 import { useTests } from '../lib/TestsProvider';
 import TestForm from '../components/TestForm';
+import TestDetail from '../components/TestDetail';
 
 const TestDetailPage: React.FC = () => {
 	const history = useHistory();
-	const test = useTests();
+	const tests = useTests();
 	const params = useParams() as any;
 	const { data, isLoading } = useQuery(['test', params.testId], async () => {
 		try {
@@ -60,17 +61,14 @@ const TestDetailPage: React.FC = () => {
 						<>
 							<Heading>
 								Test Draft{' '}
-								{(test.isUpdatingDraft || test.isPublishingDraft) && (
+								{(tests.isUpdatingDraft || tests.isPublishingDraft) && (
 									<Spinner />
 								)}
 							</Heading>
 							<TestForm test={data} questions={questions.data} />
 						</>
 					) : (
-						<>
-							<Heading>Published Test</Heading>
-							test display
-						</>
+						<TestDetail test={data} />
 					)}
 				</>
 			)}
