@@ -5,6 +5,7 @@ import axios from 'axios';
 import Page from '../../lib/components/Page';
 import { Heading, Spinner } from '@chakra-ui/react';
 import { useTests } from '../lib/TestsProvider';
+import TestForm from '../components/TestForm';
 
 const TestDetailPage: React.FC = () => {
 	const history = useHistory();
@@ -16,14 +17,42 @@ const TestDetailPage: React.FC = () => {
 
 			return response.data;
 		} catch (error) {
-			history.replace('/testt');
+			history.replace('/test');
 			return null;
 		}
 	});
 
+	const { data: questions, isLoading: isQuestionsLoading } = useQuery(
+		'questions',
+		async () => {
+			try {
+				const response = await axios.get('/personality-test-question', {
+					params: {
+						paginate: {
+							pageSize: 100,
+						},
+						match: {
+							isDraft: false,
+						},
+					},
+				});
+
+				return (
+					response.data || {
+						data: [],
+						total: 0,
+					}
+				);
+			} catch (error) {
+				history.replace('/test');
+				return null;
+			}
+		}
+	);
+
 	return (
 		<Page>
-			{isLoading ? (
+			{isLoading || isQuestionsLoading ? (
 				<Spinner />
 			) : (
 				<>
@@ -35,7 +64,7 @@ const TestDetailPage: React.FC = () => {
 									<Spinner />
 								)}
 							</Heading>
-							test form for {data.createdBy}
+							<TestForm test={data} questions={questions.data} />
 						</>
 					) : (
 						<>
