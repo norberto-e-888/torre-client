@@ -17,6 +17,8 @@ axios.defaults.baseURL = 'http://localhost:3001';
 
 const queryClient = new QueryClient();
 
+// test build
+
 ReactDOM.render(
 	<React.StrictMode>
 		<ColorModeScript />
