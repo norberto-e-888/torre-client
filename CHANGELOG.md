@@ -1,3 +1,11 @@
+Tue Mar 2 03:30:58 2021 -0500	Add _redirects
+Tue Mar 2 03:26:46 2021 -0500	Show a message when there are not assignments/questions/tests
+Tue Mar 2 03:09:47 2021 -0500	Remove gap separating test questions
+Tue Mar 2 02:56:46 2021 -0500	Show toasts on top
+Tue Mar 2 01:42:40 2021 -0500	Fix access property of undefined error
+Tue Mar 2 01:21:33 2021 -0500	Define API url via an env var
+Tue Mar 2 01:13:04 2021 -0500	test CD
+Tue Mar 2 00:52:16 2021 -0500	Update changelog
 Tue Mar 2 00:51:59 2021 -0500	Add test assignment
 Tue Mar 2 00:09:06 2021 -0500	Handle case where the test has already been taken
 Mon Mar 1 23:44:22 2021 -0500	Add test taking
