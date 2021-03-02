@@ -1,6 +1,6 @@
-import { Button, Select } from '@chakra-ui/react';
+import { Button, Select, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
 import { useAuth } from '../../auth/lib/AuthProvider';
 
@@ -24,7 +24,10 @@ function findSelectedOption(questionId: string, answers: Answer[]) {
 
 const Test: React.FC<Props> = ({ test }) => {
 	const { user } = useAuth();
-	const localStorageKey = `answers-${test.id}-${user.id}`;
+	const toast = useToast();
+	const queryClient = useQueryClient();
+	const resultsCacheKey = ['results', test._id, user.id];
+	const localStorageKey = `answers-${test._id}-${user.id}`;
 	const [answers, setAnswers] = useState<Answer[]>(
 		JSON.parse(localStorage.getItem(localStorageKey) || '[]')
 	);
@@ -69,12 +72,25 @@ const Test: React.FC<Props> = ({ test }) => {
 	};
 
 	const handleSubmitAnswers = async () => {
-		const { data } = await createResultMutation.mutateAsync({
-			answers,
-			test: test._id,
-		});
+		try {
+			const response = await createResultMutation.mutateAsync({
+				answers,
+				test: test._id,
+			});
 
-		console.log(data);
+			queryClient.setQueryData(resultsCacheKey, response.data);
+			localStorage.removeItem(localStorageKey);
+			toast({
+				title: 'Test successfully submitted',
+				description: 'Refresh this page to see your results',
+				status: 'success',
+			});
+		} catch (error) {
+			toast({
+				title: 'An error occurred',
+				status: 'error',
+			});
+		}
 	};
 
 	useEffect(() => {

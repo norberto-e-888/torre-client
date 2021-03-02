@@ -16,11 +16,19 @@ const AssignmentsListPage: React.FC = () => {
 
 	return (
 		<Page>
-			{!isLoading &&
-				data &&
-				(data.data as any[]).map((assignment) => (
-					<Assignment assignment={assignment} key={assignment._id} />
-				))}
+			<div
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+					gap: '0.5rem',
+				}}
+			>
+				{!isLoading &&
+					data &&
+					(data.data as any[]).map((assignment) => (
+						<Assignment assignment={assignment} key={assignment._id} />
+					))}
+			</div>
 		</Page>
 	);
 };
