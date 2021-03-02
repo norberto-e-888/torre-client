@@ -49,53 +49,58 @@ const QuestionsListPage: React.FC = () => {
 			<div style={{ gap: 0 }}>
 				{!isLoading &&
 					data &&
-					Object.entries(data.groupedQuestions).map(([category, questions]) => (
-						<Accordion allowToggle width="30rem" key={category}>
-							<AccordionItem>
-								<h2>
-									<AccordionButton>
-										<Box
-											flex="1"
-											textAlign="left"
-											style={{
-												fontWeight: 'bold',
-											}}
-										>
-											{category}
-										</Box>
-										<AccordionIcon />
-									</AccordionButton>
-								</h2>
-								<AccordionPanel pb={4}>
-									<ul>
-										{(questions as any[])
-											.sort((a, b) => (a.dichotomy > b.dichotomy ? 1 : -1))
-											.map(
-												({
-													_id,
-													prompt = 'No prompt',
-													dichotomy = 'No dichotomy',
-													options = [],
-												}) => (
-													<li
-														onClick={(e) => {
-															e.preventDefault();
-															history.push(`/questions/${_id}`);
-														}}
-														style={{ marginLeft: '0.5rem', cursor: 'pointer' }}
-														key={_id}
-													>
-														{prompt} (<strong>{dichotomy}</strong>,{' '}
-														{options.length}{' '}
-														{options.length === 1 ? 'option' : 'options'})
-													</li>
-												)
-											)}
-									</ul>
-								</AccordionPanel>
-							</AccordionItem>
-						</Accordion>
-					))}
+					Object.entries(data.groupedQuestions || []).map(
+						([category, questions]) => (
+							<Accordion allowToggle width="30rem" key={category}>
+								<AccordionItem>
+									<h2>
+										<AccordionButton>
+											<Box
+												flex="1"
+												textAlign="left"
+												style={{
+													fontWeight: 'bold',
+												}}
+											>
+												{category}
+											</Box>
+											<AccordionIcon />
+										</AccordionButton>
+									</h2>
+									<AccordionPanel pb={4}>
+										<ul>
+											{(questions as any[])
+												.sort((a, b) => (a.dichotomy > b.dichotomy ? 1 : -1))
+												.map(
+													({
+														_id,
+														prompt = 'No prompt',
+														dichotomy = 'No dichotomy',
+														options = [],
+													}) => (
+														<li
+															onClick={(e) => {
+																e.preventDefault();
+																history.push(`/questions/${_id}`);
+															}}
+															style={{
+																marginLeft: '0.5rem',
+																cursor: 'pointer',
+															}}
+															key={_id}
+														>
+															{prompt} (<strong>{dichotomy}</strong>,{' '}
+															{options.length}{' '}
+															{options.length === 1 ? 'option' : 'options'})
+														</li>
+													)
+												)}
+										</ul>
+									</AccordionPanel>
+								</AccordionItem>
+							</Accordion>
+						)
+					)}
 			</div>
 		</Page>
 	);

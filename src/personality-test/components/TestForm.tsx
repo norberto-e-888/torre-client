@@ -27,7 +27,7 @@ interface Props {
 	questions: any[];
 }
 
-const TestForm: React.FC<Props> = ({ test, questions }) => {
+const TestForm: React.FC<Props> = ({ test, questions = [] }) => {
 	const tests = useTests();
 	const {
 		register,
@@ -45,7 +45,7 @@ const TestForm: React.FC<Props> = ({ test, questions }) => {
 	});
 
 	const [selectedQuestions, setSelectedQuestions] = useState<any[]>(
-		test.questions
+		test?.questions || []
 	);
 
 	const onUpdateDraft = () => {

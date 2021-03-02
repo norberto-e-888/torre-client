@@ -3,11 +3,13 @@ import { useQuery } from 'react-query';
 import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Page from '../../lib/components/Page';
+import Test from '../components/Test';
+import { Heading } from '@chakra-ui/react';
 
 const TakeTestPage: React.FC = () => {
 	const params = useParams() as any;
 	const history = useHistory();
-	const { data: test } = useQuery(
+	const { data: test, isLoading } = useQuery(
 		['isTestAssignedToUser', params.testId],
 		async () => {
 			try {
@@ -22,7 +24,12 @@ const TakeTestPage: React.FC = () => {
 		}
 	);
 
-	return <Page>{<p>test {test?.alias}</p>}</Page>;
+	return (
+		<Page>
+			<Heading fontWeight="medium">{test?.alias}</Heading>
+			{!isLoading && test && <Test test={test} />}
+		</Page>
+	);
 };
 
 export default TakeTestPage;

@@ -19,7 +19,7 @@ const AssignmentsListPage: React.FC = () => {
 			{!isLoading &&
 				data &&
 				(data.data as any[]).map((assignment) => (
-					<Assignment assignment={assignment} />
+					<Assignment assignment={assignment} key={assignment._id} />
 				))}
 		</Page>
 	);
