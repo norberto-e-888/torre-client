@@ -8,10 +8,12 @@ interface Props {
 
 const Assignment: React.FC<Props> = ({ assignment }) => {
 	const history = useHistory();
+	const adminName = `${assignment.assignedBy?.name?.first} ${assignment.assignedBy?.name?.last}`;
+	const isAnonymus = adminName.trim().length === 8;
 	return (
 		<div>
 			<Heading fontWeight="medium" fontSize="1.5rem">
-				{assignment.assignedBy.name.first} {assignment.assignedBy.name.last}
+				{!isAnonymus ? 'Anonymus admin' : adminName}
 			</Heading>
 			<Text>
 				{' '}
