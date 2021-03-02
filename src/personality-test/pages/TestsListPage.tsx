@@ -73,6 +73,7 @@ const TestsListPage: React.FC = () => {
 												key={_id}
 												style={{
 													cursor: 'pointer',
+													marginLeft: '0.5rem',
 												}}
 												onClick={(e) => {
 													e.preventDefault();
