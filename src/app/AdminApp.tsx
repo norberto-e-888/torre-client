@@ -6,6 +6,7 @@ import TestDetailPage from '../personality-test/pages/TestDetailPage';
 import TestsListPage from '../personality-test/pages/TestsListPage';
 import { useQuestions } from '../questions/lib/QuestionsProvider';
 import QuestionDetailPage from '../questions/pages/QuestionDetailPage';
+import QuestionsListPage from '../questions/pages/QuestionsListPage';
 
 const AdminApp: React.FC = () => {
 	const questionsState = useQuestions();
@@ -27,7 +28,7 @@ const AdminApp: React.FC = () => {
 				<TestDetailPage />
 			</Route>
 			<Route path="/questions" exact>
-				<Page>Questions List</Page>
+				<QuestionsListPage />
 			</Route>
 			<Route path="/questions/:questionId" exact>
 				<QuestionDetailPage />
