@@ -13,7 +13,7 @@ import { QuestionsProvider } from './questions/lib/QuestionsProvider';
 import { TestsProvider } from './personality-test/lib/TestsProvider';
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 const queryClient = new QueryClient();
 
