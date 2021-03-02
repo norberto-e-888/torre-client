@@ -84,11 +84,13 @@ const Test: React.FC<Props> = ({ test }) => {
 				title: 'Test successfully submitted',
 				description: 'Refresh this page to see your results',
 				status: 'success',
+				position: 'top',
 			});
 		} catch (error) {
 			toast({
 				title: 'An error occurred',
 				status: 'error',
+				position: 'top',
 			});
 		}
 	};
