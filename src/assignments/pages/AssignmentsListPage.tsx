@@ -23,11 +23,13 @@ const AssignmentsListPage: React.FC = () => {
 					gap: '0.5rem',
 				}}
 			>
-				{!isLoading &&
-					data &&
+				{!isLoading && data ? (
 					(data.data as any[]).map((assignment) => (
 						<Assignment assignment={assignment} key={assignment._id} />
-					))}
+					))
+				) : (
+					<p>No assignments yet</p>
+				)}
 			</div>
 		</Page>
 	);

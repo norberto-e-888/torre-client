@@ -45,10 +45,9 @@ const QuestionsListPage: React.FC = () => {
 
 	return (
 		<Page>
-			<Heading fontWeight="medium">Questions</Heading>
+			{data && <Heading fontWeight="medium">Questions</Heading>}
 			<div style={{ gap: 0 }}>
-				{!isLoading &&
-					data &&
+				{!isLoading && data ? (
 					Object.entries(data.groupedQuestions || []).map(
 						([category, questions]) => (
 							<Accordion allowToggle width="30rem" key={category}>
@@ -100,7 +99,10 @@ const QuestionsListPage: React.FC = () => {
 								</AccordionItem>
 							</Accordion>
 						)
-					)}
+					)
+				) : (
+					<p>No questions yet</p>
+				)}
 			</div>
 		</Page>
 	);

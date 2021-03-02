@@ -33,9 +33,13 @@ export const QuestionsProvider: React.FC = ({ children }) => {
 	);
 
 	const publishDraft = async (id: string) => {
-		const { data } = await publishDraftMutation.mutateAsync(id);
-		queryClient.setQueryData(['question', data.id], data);
-		return data;
+		try {
+			const { data } = await publishDraftMutation.mutateAsync(id);
+			queryClient.setQueryData(['question', data.id], data);
+			return data;
+		} catch (error) {
+			throw error;
+		}
 	};
 
 	return (

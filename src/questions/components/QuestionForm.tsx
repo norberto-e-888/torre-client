@@ -13,6 +13,7 @@ import {
 	InputGroup,
 	Select,
 	Stack,
+	useToast,
 } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import React from 'react';
@@ -41,6 +42,7 @@ interface Props {
 
 const QuestionForm: React.FC<Props> = ({ question }) => {
 	const questions = useQuestions();
+	const toast = useToast();
 	const {
 		register,
 		handleSubmit,
@@ -78,12 +80,22 @@ const QuestionForm: React.FC<Props> = ({ question }) => {
 	};
 
 	const onPublishDraft = async () => {
-		await questions.publishDraft(question.id);
-		reset({
-			prompt: '',
-			dichotomy: PersonalityDichotomy.Energy,
-			options: [],
-		});
+		try {
+			await questions.publishDraft(question.id);
+			reset({
+				prompt: '',
+				dichotomy: PersonalityDichotomy.Energy,
+				options: [],
+			});
+		} catch (error) {
+			console.log(error.response);
+			toast({
+				title: 'An error occurred',
+				description: error?.response?.data?.message || 'Server error',
+				status: 'error',
+				position: 'top',
+			});
+		}
 	};
 
 	return (

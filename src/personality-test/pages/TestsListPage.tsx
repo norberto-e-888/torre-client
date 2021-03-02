@@ -46,10 +46,9 @@ const TestsListPage: React.FC = () => {
 
 	return (
 		<Page>
-			<Heading fontWeight="medium">Tests</Heading>
+			{testsData && <Heading fontWeight="medium">Tests</Heading>}
 			<div style={{ gap: 0 }}>
-				{!isLoading &&
-					testsData &&
+				{!isLoading && testsData ? (
 					Object.entries(testsData.groupedTests).map(([category, tests]) => (
 						<Accordion allowToggle width="30rem" key={category}>
 							<AccordionItem>
@@ -87,7 +86,10 @@ const TestsListPage: React.FC = () => {
 								</AccordionPanel>
 							</AccordionItem>
 						</Accordion>
-					))}
+					))
+				) : (
+					<p>No tests yet</p>
+				)}
 			</div>
 		</Page>
 	);
