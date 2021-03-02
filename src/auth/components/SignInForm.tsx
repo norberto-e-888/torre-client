@@ -28,7 +28,7 @@ const SignInForm: React.FC = () => {
 		} catch (error) {
 			toast({
 				title: 'Error',
-				description: error.response.data.message || 'Server error',
+				description: error.response?.data?.message || 'Server error',
 				status: 'error',
 				duration: 3000,
 				isClosable: true,
