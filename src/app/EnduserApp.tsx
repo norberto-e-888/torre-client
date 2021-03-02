@@ -1,12 +1,12 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import AssignmentsListPage from '../assignments/pages/AssignmentsListPage';
-import Page from '../lib/components/Page';
+import TakeTestPage from '../personality-test/pages/TakeTestPage';
 
 const EnduserApp: React.FC = () => (
 	<Switch>
 		<Route path="/tests/:testId/take" exact>
-			<Page>Assignment</Page>
+			<TakeTestPage />
 		</Route>
 		<Route path="/assignments" exact>
 			<AssignmentsListPage />
