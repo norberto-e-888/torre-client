@@ -105,7 +105,6 @@ const Test: React.FC<Props> = ({ test }) => {
 				style={{
 					display: 'flex',
 					flexDirection: 'column',
-					gap: '1rem',
 					overflow: 'scroll',
 				}}
 			>
